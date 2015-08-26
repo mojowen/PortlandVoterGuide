@@ -208,7 +208,11 @@
             track +=  '-'+office.toLowerCase().replace(/\s/g,'-')
         }
 
+<<<<<<< HEAD
         link = "http://www.chicagovoterguide.org"+link
+=======
+        link = baseurl+link
+>>>>>>> ddeb7f0... improve variability
         link += '?utm_source=endorse'
         link += '&utm_campaign='+track
 
@@ -274,12 +278,12 @@
         map_canvas.innerHTML = "";
 
         var address = this.address.value;
-        if( address.toLowerCase().search('chicago') === -1 ) {
-            address += ' Chicago IL'
+        if( address.toLowerCase().search(city.toLowerCase()) === -1 ) {
+            address += [null, city, state_abv].join(' ')
         }
-        if( address.toLowerCase().search('il') === -1 ||
-                address.toLowerCase().search('illinois') === -1 ) {
-            address += ' IL'
+        if( address.search(state_abv) === -1 ||
+                address.toLowerCase().search(state.toLowerCase()) === -1 ) {
+            address += [null, state_abv].join(' ')
         }
 
         geocoder.geocode({
@@ -343,7 +347,7 @@
                     when_ready( function() {
                         specifyWard(document.location.hash.replace(/[^0-9]/g,''))
                         var old_link = document.location.hash
-                        document.location.hash = 'alderperson_list'
+                        document.location.hash = 'counselors' // Hack to make it scroll
                         document.location.hash = old_link
                     });
                 }

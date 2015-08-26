@@ -7,5 +7,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@chicagovotes">
   <meta name="twitter:title" content="<%= @meta['title'] %>" />
+  <script type="text/javascript">
+    var related = <%= @meta['twitter_name'].to_json %>;
+    var baseurl = <%= @base.url.to_json %>;
+    var city = <%= @base.city.to_json %>;
+    var state = <%= @base.state.to_json %>;
+    var state_abv = <%= @base.state_abv.to_json %>;
+    var hashtag = <%= @meta['twitter_hashtag'].to_json %>;
+  </script>
   <meta name="twitter:description" content="<%= @meta['description'] %>" />
   <meta name="twitter:image:src" content="<%= @meta['image'] %>" />
