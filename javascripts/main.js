@@ -208,11 +208,7 @@
             track +=  '-'+office.toLowerCase().replace(/\s/g,'-')
         }
 
-<<<<<<< HEAD
-        link = "http://www.chicagovoterguide.org"+link
-=======
         link = baseurl+link
->>>>>>> ddeb7f0... improve variability
         link += '?utm_source=endorse'
         link += '&utm_campaign='+track
 
