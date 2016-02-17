@@ -53,10 +53,11 @@ class Controller
         @filename = "candidates/#{make_uri candidate['office']}-"\
                     "#{make_uri candidate['name']}"
         @meta_partial = set_meta({
-            'url' => "#{@base.url}/sharing/#{@filename}",
+            'url' => "#{@base.url}/sharing/#{@filename}.html",
             'image' => "#{@base.url}/#{candidate['photo']}",
             'title' => "Vote #{name} for #{office}",
-            'description' => "Vote #{name} for #{office} - and you should too",
+            'description' => "I'm voting for #{name} for #{office} - "\
+                             "and you should too",
         })
     end
 
