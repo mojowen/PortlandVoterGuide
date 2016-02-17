@@ -31,7 +31,7 @@ def download_csv_photos filename
     CSV.foreach("data/#{filename}.csv", :headers => true) do |row|
         candidate = (Hash[row.headers.reject(&:nil?).map(&:downcase).map(&:strip)
                      .zip(row.fields.map)])
-        grab_photo candidate, 'image url'
+        grab_photo candidate, 'photo'
         candidates.push candidate
     end
     CSV.open("data/#{filename}.csv", "w") do |csv|
