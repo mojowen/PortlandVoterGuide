@@ -3,94 +3,79 @@ require 'open-uri'
 require 'twitter'
 
 
-alderpeople = JSON::parse(File.read('data/alderpeople.json'))
-
-
-def make_filename person
-    "#{person['ward']}-#{person['first']}-#{person['last']}"
+def make_filename candidate
+    "#{candidate['office']}-#{candidate['name']}"
+    .gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
 end
 
-def grab_photo(person, path)
-    return path if path.index('images/alderpeople')
+def grab_photo(person, field='photo')
+    if person[field]
+        unless File.exists?(person[field])
+            photo = retrieve_from_url person, person[field]
+            person[field] = photo || nil
+        end
+    end
+    retrieve_from_facebook person if person['faceook'] && person['photo'].nil?
+    retrieve_from_twitter person if person['twitter'] && person['photo'].nil?
+end
 
-    ext = path.split('.').last
+def retrieve_from_url(person, path)
+
+    ext = path.split('.').last.split(/\?|#/).first
     ext = 'jpg' if ext.length > 4
 
     filename = make_filename person
-    filename = "images/alderpeople/#{filename}.#{ext}"
+    filename = "images/candidates/#{filename}.#{ext}"
+
+    return filename if File.exists?(filename)
+
     begin
-        open(path) do |f|
-            File.open(filename,"wb") do |file|
-                file.puts f.read
+        open(path, 'User-Agent' => 'ruby') do |remote_file|
+            if remote_file.length > 0
+                File.open(filename, "wb") do |local_file|
+                    local_file.puts remote_file.read
+                end
+                return filename
             end
         end
-        return filename
-    rescue OpenURI::HTTPError => error
+    rescue => e
+        puts "Could not open #{path} for #{person['name']}"
     end
     return false
 end
 
-# Clean the data
-alderpeople.each do |person|
-    person.each do |k, v|
-        person[k] = v.strip if v
+def retrieve_from_facebook person
+    facebook_page_name = person['facebook'].split(/\?|#/).first
+    facebook_page_name = person['facebook'].split('/').last
+
+    graph_endpoint = ("http://graph.facebook.com/#{facebook_page_name}"+
+                      "/picture?redirect=true")
+    photo = retrieve_from_url person, graph_endpoint
+    person['photo'] = photo if photo
+end
+
+twitter_client = nil
+
+def retrieve_from_twitter person
+    if twitter_client.nil?
+        twitter_client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = "EGYNtJkjYbESmbUPGBHZCA"
+          config.consumer_secret     = "TXlCXQfIYu2aLiUgo2GfmAj78DNt6JVQmxjhOM"
+          config.access_token        = "14759621-lwHJpacKaBNy7ha5tRJccHAVjYoW6EOV54F5uiddw"
+          config.access_token_secret = "xqTzCIGK4DVgW1J9sUQLqPuF5NCMnLGOpMEengNjsQ"
+          # I've expired these
+        end
     end
-end
 
-# Check if photo exists
-Dir.glob('images/alderpeople/*').each do |file|
-    filename = file.split('.').first.split('/').last
-    person = alderpeople.find{ |p| make_filename(p)== filename }
-    person['photo'] = file if person
-end
-
-# Grab Photos from photo url
-alderpeople.reject{ |p| p['photo'].nil? }.each do |person|
-    photo = grab_photo person, person['photo']
-    person['photo'] = photo ? photo : nil
-end
-
-# I've expired these
-client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "EGYNtJkjYbESmbUPGBHZCA"
-  config.consumer_secret     = "TXlCXQfIYu2aLiUgo2GfmAj78DNt6JVQmxjhOM"
-  config.access_token        = "14759621-lwHJpacKaBNy7ha5tRJccHAVjYoW6EOV54F5uiddw"
-  config.access_token_secret = "xqTzCIGK4DVgW1J9sUQLqPuF5NCMnLGOpMEengNjsQ"
-end
-
-begin
-    # Get photo from twitter
-    alderpeople.reject{ |p| p['twitter'].nil? || p['photo'] }.each do |person|
+    begin
+        # Get photo from twitter
         begin
-            user = client.user( person['twitter'].split('/').last )
+            user = twitter_client.user( person['twitter'].split('/').last )
             photo = grab_photo person, user.profile_image_url.to_s.gsub('_normal','')
             person['photo'] = photo if photo
         rescue Twitter::Error::NotFound => error
             person['twitter'] = nil
         end
+    rescue Twitter::Error::TooManyRequests => error
     end
-rescue Twitter::Error::TooManyRequests => error
 end
-
-# Get photo from tribune website
-alderpeople.reject{ |p| p['photo'] }.each do |person|
-    first = person['first'].split(' ').first
-    last = person['last'].split(' ').last
-    photo = ("http://elections.chicagotribune.com/static/electioncenter2/"+
-             "IL_edboard"+"/#{first}-#{last}.jpg".downcase)
-    photo = grab_photo person, photo
-    person['photo'] = photo if photo
-end
-
-
-CSV.open("data/alderpeople.csv", "wb") do |csv|
-  csv << alderpeople.first.keys
-  alderpeople.each do |hash|
-    csv << hash.values
-  end
-end
-
-File.open('data/alderpeople.json','wb') do |fl|
-    fl.write(alderpeople.to_json)
-end
-

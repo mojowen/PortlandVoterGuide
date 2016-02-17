@@ -1,7 +1,6 @@
 @import 'settings';
 @import 'variables';
 @import 'reset';
-@import 'reset';
 @import 'type';
 
 body {
@@ -23,7 +22,12 @@ body {
         border-radius: 4px;
         background: white;
     }
-    input { color: $emphasis; }
+    textarea, input { color: $emphasis; }
+    textarea {
+      border: 1px solid lightgrey;
+      resize: none;
+      width: 258px;
+    }
     line-height: 2em;
     form { margin: 20px 0; }
 }

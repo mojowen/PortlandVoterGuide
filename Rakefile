@@ -4,6 +4,7 @@ require 'json'
 require 'webrick'
 
 load 'controller.rb'
+load 'photos.rb'
 
 task :serve do
     port = ARGV[1] || 8080
@@ -12,44 +13,38 @@ task :serve do
     server.start
 end
 
-task :mayors do
-    mayors, _ = mayor_data
-
-    markdown = [[]]
-
-    mayors.first.keys.each do |key|
-        markdown.first.push(key.to_s.capitalize)
+def csv_to_json filename
+    list = []
+    CSV.foreach("data/#{filename}.csv", :headers => true) do |row|
+         list.push (Hash[row.headers.map(&:downcase).map(&:strip)
+                    .zip(row.fields.map)])
     end
-
-    markdown.push(Array.new(mayors.first.keys.length,'---'))
-    mayors.each do |mayor|
-        markdown.push([])
-        mayor.each do |k,v|
-            if k == "photo"
-                markdown.last.push("![](#{v})")
-            else
-                markdown.last.push(v.respond_to?('join') ? v.join(',') : v)
-            end
-        end
-    end
-
-    File.open('mayors.md','w') do |fl|
-        fl.write(markdown.map{ |r| "|#{r.join('|')}|" }.join("\n"))
+    File.open("data/#{filename}.json",'w') do |fl|
+        fl.write(list.to_json)
     end
 end
+def download_csv_photos filename
+    candidates = []
 
-task :alderpeople do
-    alderpeople = []
-    CSV.foreach("data/alderpeople.csv",
-                :headers => true) do |row|
-         alderpeople.push Hash[row.headers.map(&:downcase).zip(row.fields.map)]
+    Dir.mkdir 'images/candidates' unless Dir.exists?("images/candidates")
+
+    CSV.foreach("data/#{filename}.csv", :headers => true) do |row|
+        candidate = (Hash[row.headers.reject(&:nil?).map(&:downcase).map(&:strip)
+                     .zip(row.fields.map)])
+        grab_photo candidate, 'image url'
+        candidates.push candidate
     end
-    File.open('data/alderpeople.json','w') do |fl|
-        fl.write(alderpeople.to_json)
+    CSV.open("data/#{filename}.csv", "w") do |csv|
+      csv << candidates.first.keys
+      candidates.each do |candidate|
+        csv << candidate.values
+      end
     end
-    Rake::Task["all"]
 end
-
+task :candidates do
+    download_csv_photos 'candidates'
+    csv_to_json 'candidates'
+end
 task :erb, :paths do |t,args|
     """
     Rebuild HTML pages.
@@ -70,7 +65,7 @@ task :erb, :paths do |t,args|
     end
 end
 
-task :all do
+task all: [:candidates] do
     """
     Rebuild all the HTML pages.
     """
@@ -79,13 +74,11 @@ task :all do
 end
 
 task :sharing do
-    mayors, _ = mayor_data()
+    candidates = candidates_data
 
     build = {
-        'mayor' => mayors,
-        'alderman' => JSON::parse(File.read('data/alderpeople.json'))
+        'candidates' => candidates,
     }
-
 
     FileUtils.rm_r 'sharing' if Dir.exists?("sharing")
     Dir.mkdir "sharing"

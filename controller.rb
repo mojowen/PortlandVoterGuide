@@ -1,21 +1,20 @@
 require 'json'
 require 'erb'
 
-def mayor_data
-    mayors = JSON::parse(File.read('data/mayors.json'))
-    titles = mayors.first.keys.reject{ |k| k[-1] != "?" }.map(&:to_s)
-
-    return mayors, titles
+def candidates_data
+    JSON.parse(File.read('data/candidates.json'))
 end
-
 def measures_data
-    return JSON::parse(File.read('data/measures.json'))
+    JSON.parse(File.read('data/measures.json'))
 end
-def _get_ordinal n
+def get_ordinal n
     n = n.to_i
     s = ["th","st","nd","rd"]
     v = n % 100
     "#{n}#{(s[(v-20)%10]||s[v]||s[0])}"
+end
+def make_uri(string)
+    string.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
 end
 
 class Controller
@@ -43,19 +42,20 @@ class Controller
 
     def index
         @meta_partial = set_meta
-        @districts, @questions = candidate_data
+        @candidates = candidates_data
+        @contests = @candidates.map{ |cand| cand['office'] }.uniq
     end
 
-    def counselors counselor
-        name = counselor['name']
-        link = name.downcase.gsub(' ','-').gsub(/[^a-zA-Z0-9\-]/,'')
-        office = "#{_get_ordinal(counselor['ward'])} Ward counselor"
-        @anchor =  "@#{counselor['ward']}"
-        @filename = "counselors/#{counselor['ward']}-#{link}"
+    def candidates candidate
+        name = candidate['name']
+        office = candidate['office']
+        @anchor =  "@#{candidate['office']}-#{candidate['party']}"
+        @filename = "candidates/#{make_uri candidate['office']}-"\
+                    "#{make_uri candidate['name']}"
         @meta_partial = set_meta({
             'url' => "#{@base.url}/sharing/#{@filename}",
-            'image' => "#{@base.url}/#{counselor['photo']}",
-            'title' => "Vote #{name} for Ward #{office}",
+            'image' => "#{@base.url}/#{candidate['photo']}",
+            'title' => "Vote #{name} for #{office}",
             'description' => "Vote #{name} for #{office} - and you should too",
         })
     end

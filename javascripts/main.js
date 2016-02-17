@@ -1,7 +1,6 @@
 (function() {
-    var geocoder = new google.maps.Geocoder(),
-        wards = false,
-        alderpeople = false,
+    geocoder = new google.maps.Geocoder(),
+        districts = false,
         callback = false
 
     /** Mapping **/
@@ -13,36 +12,27 @@
                     "coordinates": [lng, lat]
             }
         };
-        for (var i in wards) {
-            var the_ward = {
-                "type": "Feature",
-                    "geometry": {
-                    "type": "Polygon",
-                        "coordinates": wards[i].simple_shape[0]
-                }
-            };
-            if (turf.inside(point, the_ward)) {
-                mapIt(the_ward, wards[i].centroid, [lng, lat]);
-                renderAlerpeople(i);
-                return wards[i];
+        for (var i in districts.features) {
+            var the_district = districts.features[i]
+            if (turf.inside(point, the_district)) {
+                var center = turf.centroid(the_district).geometry.coordinates
+                mapIt(the_district, center, [lng, lat]);
+                renderCounselors(the_district.properties.Ward_Numbe.toString());
+                return the_district;
             }
         }
         new_map([lng, lat]);
     }
-    function specifyWard(ward) {
-        var the_ward = {
-                "type": "Feature",
-                    "geometry": {
-                    "type": "Polygon",
-                        "coordinates": wards[ward].simple_shape[0]
-                }
-            };
-        mapIt(the_ward, wards[ward].centroid, wards[ward].centroid);
-        renderAlerpeople(ward);
+    function specifyWard(district_number) {
+        var the_district = districts.features.filter( function(el) {
+                return el.properties.Ward_Numbe.toString() == district_number; })[0],
+            center = turf.centroid(the_district).geometry.coordinates
+        mapIt(the_district, center, center);
+        renderCounselors(district_number);
     }
     function new_map(center) {
         map_canvas.style.display = 'block';
-        var map = new google.maps.Map(map_canvas, {
+        map = new google.maps.Map(map_canvas, {
             zoom: 12,
             center: new google.maps.LatLng(center[1], center[0]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -55,16 +45,24 @@
             scaleControl: false,
             draggable: true
         });
+        map.data.setStyle({
+            "strokeWeight": 1,
+            "color": "red",
+            "fillColor": "red",
+            "fillOpacity": 0.1,
+            "strokeColor": "red"
+        });
+
         return map;
     }
-    function mapIt(ward, center, home) {
+    function mapIt(district, center, home) {
         var map = new_map(center);
 
         new google.maps.Marker({
             position: new google.maps.LatLng(home[1], home[0]),
             map: map})
 
-        map.data.addGeoJson(ward);
+        map.data.addGeoJson(district);
         map.data.setStyle({
             "strokeWeight": 1,
             "color": "red",
@@ -76,86 +74,14 @@
     }
 
     /** Templates **/
-    function renderAlerpeople(ward) {
-        var found = 0;
-        alderperson_list.innerHTML = '<h3>Candidates for Ward '+ward+'</h3>';
-
-        for (var i = alderpeople.length - 1; i >= 0; i--) {
-            if( alderpeople[i].ward == ward ) {
-                alderperson_list.appendChild(renderAlderPerson(alderpeople[i]))
-                found += 1;
+    function renderCounselors(district) {
+        var districts = counselors.querySelectorAll('.district')
+        for (var i = districts.length - 1; i >= 0; i--) {
+            var div_district = districts[i].getAttribute('data-district')
+            if( div_district !== district ) {
+                districts[i].style.display = 'none';
             }
         };
-        if( found < 1) {
-            alderperson_list.innerHTML = '<h3>No Runoff in Ward '+ward+'</h3>';
-        }
-    }
-    function renderAlderPerson(alderperson) {
-        var container = document.createElement('div'),
-            img = document.createElement('div'),
-            endorsement_button = document.createElement('a'),
-            title = document.createElement('h2'),
-            incumbent = document.createElement('h4'),
-            generic_link = document.createElement('a'),
-            name = [alderperson.first, alderperson.last].join(' '),
-            ordinal = getOrdinal(parseInt(alderperson.ward))
-
-
-        container.className = 'alderperson'
-        title.innerText = name
-        container.appendChild(title)
-
-        if( (alderperson.photo || '').length > 0 ) {
-            img.className = 'img'
-            img.style.backgroundImage = 'url(/'+alderperson.photo+')'
-            container.appendChild(img)
-        }
-        if( alderperson.incumbent ) {
-            incumbent.innerText = 'Incumbent'
-            container.appendChild(incumbent)
-        }
-
-        generic_link.setAttribute('target','blank')
-
-        // TODO: Abtract into templating function
-        var twitter = generic_link.cloneNode(),
-            facebook = generic_link.cloneNode(),
-            website = generic_link.cloneNode()
-
-        website.className = "fa fa-link"
-        twitter.className = "fa fa-twitter-square"
-        facebook.className = "fa fa-facebook-square"
-
-        website.innerText = "Webpage"
-        twitter.innerText = "Twitter"
-        facebook.innerText = "Facebook"
-
-        if( (alderperson.website || '').length > 0 ) {
-            website.setAttribute('href', alderperson.website)
-            container.appendChild(website)
-        }
-        if( (alderperson.facebook || '').length > 0 ) {
-            facebook.setAttribute('href',alderperson.facebook)
-            container.appendChild(facebook)
-        }
-        if( (alderperson.twitter || '').length > 0 ) {
-            twitter.setAttribute('href',alderperson.twitter)
-            container.appendChild(twitter)
-        }
-
-        // TODO: Abtract into templating function
-        endorsement_button.innerText = 'endorse'
-        endorsement_button.className = 'vote_for'
-        endorsement_button.setAttribute('data-name', name)
-        endorsement_button.setAttribute('data-link',
-            ('/sharing/alderman/'+alderperson.ward+'-'+(name
-            .replace(' ','-').toLowerCase().replace(/[^a-zA-Z0-9\-]/g,''))))
-        endorsement_button.setAttribute('data-office',
-                                        ordinal+' Ward Alderman')
-        endorsement_button.onclick = function() { endorsementWidget(this) }
-        container.appendChild(endorsement_button)
-
-        return container
     }
     function endorsementWidget(button) {
         var button = button,
@@ -217,8 +143,8 @@
             "https://www.facebook.com/sharer/sharer.php?u="+facebook_link)
         var tweet_params = ["text="+message,
                         "url="+escape(link+'&utm_medium=twitter'),
-                        "hashtags=chivote2015",
-                        "related=chicagovotes"].join('&')
+                        "hashtags="+hashtag,
+                        "related="+related].join('&')
         twitter.setAttribute('href',
             "https://twitter.com/intent/tweet?"+tweet_params)
 
@@ -300,6 +226,28 @@
         });
         return false;
     }
+    function readMore() {
+        var question = this.parentElement,
+            row = question.parentElement,
+            allMores = document.body.querySelectorAll('.the--read-more'),
+            allClickers = document.body.querySelectorAll('.click--read-more'),
+            thisMores = row.querySelectorAll('.the--read-more')
+
+        for (var i = allMores.length - 1; i >= 0; i--) {
+            allMores[i].style.display = null
+        };
+        for (var i = allClickers.length - 1; i >= 0; i--) {
+            allClickers[i].style.display = null
+        };
+        for (var i = thisMores.length - 1; i >= 0; i--) {
+            thisMores[i].style.display = 'block'
+        };
+
+        try { ga('send', 'event', 'read-more', question.innerText.split('?')[0]); } catch(e) { }
+
+        this.style.display = 'none'
+        return false
+    }
     function log_zip(zip) {
         try { ga('send', 'event', 'lookup', zip); } catch(e) { }
     }
@@ -310,7 +258,7 @@
         try { ga('send', 'event', "share_"+method, type, thing); } catch(e) { }
     }
     function when_ready(runn_func) {
-        if( wards && alderpeople ) {
+        if( districts ) {
             if( callback ) {
                 return callback()
             } else if( typeof runn_func != 'undefined' ) {
@@ -326,13 +274,17 @@
        return n+(s[(v-20)%10]||s[v]||s[0]);
     }
 
-    document.body.onload = function() {
-        search_form.onsubmit = searchSubmit;
+    var current_onload = window.onload || function() {}
+    window.onload = function() {
+        current_onload()
+
+        search_form.onsubmit = function() { searchSubmit.apply(this); return false; }
+
+        var readMores = document.body.querySelectorAll('.click--read-more')
+        for (var i = 0; i < readMores.length; i++) { readMores[i].onclick = readMore };
 
         tinyGET('/data/wards.json',{},
-            function(data) { wards = data; when_ready(); });
-        tinyGET('/data/alderpeople.json',{},
-            function(data) { alderpeople = data; when_ready(); });
+            function(data) { districts = data; when_ready(); });
 
         if( document.location.hash.length > 0 ) {
             if( document.location.hash[1] != '!' ) {
