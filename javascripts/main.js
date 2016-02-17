@@ -1,5 +1,6 @@
 (function() {
-    var geocoder = new google.maps.Geocoder(),
+    var google = window.google || { no_google: true },
+        geocoder = google.no_google ? {} : new google.maps.Geocoder(),
         districts = false,
         callback = false
 
