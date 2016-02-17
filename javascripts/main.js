@@ -1,5 +1,5 @@
 (function() {
-    geocoder = new google.maps.Geocoder(),
+    var geocoder = new google.maps.Geocoder(),
         districts = false,
         callback = false
 
@@ -17,7 +17,7 @@
             if (turf.inside(point, the_district)) {
                 var center = turf.centroid(the_district).geometry.coordinates
                 mapIt(the_district, center, [lng, lat]);
-                renderCounselors(the_district.properties.Ward_Numbe.toString());
+                renderCounselors(the_district.properties.District.toString());
                 return the_district;
             }
         }
@@ -25,15 +25,15 @@
     }
     function specifyWard(district_number) {
         var the_district = districts.features.filter( function(el) {
-                return el.properties.Ward_Numbe.toString() == district_number; })[0],
+                return el.properties.DIST_NUM == district_number; })[0],
             center = turf.centroid(the_district).geometry.coordinates
         mapIt(the_district, center, center);
         renderCounselors(district_number);
     }
     function new_map(center) {
         map_canvas.style.display = 'block';
-        map = new google.maps.Map(map_canvas, {
-            zoom: 12,
+        var map = new google.maps.Map(map_canvas, {
+            zoom: 11,
             center: new google.maps.LatLng(center[1], center[0]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false,
@@ -45,14 +45,6 @@
             scaleControl: false,
             draggable: true
         });
-        map.data.setStyle({
-            "strokeWeight": 1,
-            "color": "red",
-            "fillColor": "red",
-            "fillOpacity": 0.1,
-            "strokeColor": "red"
-        });
-
         return map;
     }
     function mapIt(district, center, home) {
@@ -78,7 +70,7 @@
         var districts = counselors.querySelectorAll('.district')
         for (var i = districts.length - 1; i >= 0; i--) {
             var div_district = districts[i].getAttribute('data-district')
-            if( div_district !== district ) {
+            if( div_district !== district && div_district != 'At-large') {
                 districts[i].style.display = 'none';
             }
         };
@@ -226,28 +218,6 @@
         });
         return false;
     }
-    function readMore() {
-        var question = this.parentElement,
-            row = question.parentElement,
-            allMores = document.body.querySelectorAll('.the--read-more'),
-            allClickers = document.body.querySelectorAll('.click--read-more'),
-            thisMores = row.querySelectorAll('.the--read-more')
-
-        for (var i = allMores.length - 1; i >= 0; i--) {
-            allMores[i].style.display = null
-        };
-        for (var i = allClickers.length - 1; i >= 0; i--) {
-            allClickers[i].style.display = null
-        };
-        for (var i = thisMores.length - 1; i >= 0; i--) {
-            thisMores[i].style.display = 'block'
-        };
-
-        try { ga('send', 'event', 'read-more', question.innerText.split('?')[0]); } catch(e) { }
-
-        this.style.display = 'none'
-        return false
-    }
     function log_zip(zip) {
         try { ga('send', 'event', 'lookup', zip); } catch(e) { }
     }
@@ -274,30 +244,19 @@
        return n+(s[(v-20)%10]||s[v]||s[0]);
     }
 
-    var current_onload = window.onload || function() {}
-    window.onload = function() {
-        current_onload()
-
-        search_form.onsubmit = function() { searchSubmit.apply(this); return false; }
-
-        var readMores = document.body.querySelectorAll('.click--read-more')
-        for (var i = 0; i < readMores.length; i++) { readMores[i].onclick = readMore };
-
-        tinyGET('/data/wards.json',{},
-            function(data) { districts = data; when_ready(); });
+    document.body.onload = function() {
+        var search_form_exists = typeof search_form !== 'undefined'
+        if( search_form_exists ) {
+            search_form.onsubmit = searchSubmit;
+        }
 
         if( document.location.hash.length > 0 ) {
-            if( document.location.hash[1] != '!' ) {
+            if( document.location.hash[1] != '!' && search_form_exists ) {
                 search_form.address.value = document.location.hash.replace('#','').replace(/\+/g,' ')
                 searchSubmit.apply(search_form)
             } else {
                 if( document.location.hash[2] == '@') {
-                    when_ready( function() {
-                        specifyWard(document.location.hash.replace(/[^0-9]/g,''))
-                        var old_link = document.location.hash
-                        document.location.hash = 'counselors' // Hack to make it scroll
-                        document.location.hash = old_link
-                    });
+                    document.location.hash = document.location.hash.slice(3, document.location.hash.length)
                 }
             }
         }
