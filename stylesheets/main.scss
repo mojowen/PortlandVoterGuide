@@ -37,8 +37,10 @@ body {
     padding: 50px 0;
     color: $type;
     .header {
-        @include gridle(8);
-        @include gridle(10, 'mobile');
+        @include gridle_grid(8);
+        @include gridle_state(mobile) {
+            @include gridle_grid(10);
+        }
         @include gridle_grid_centered();
         h1, h2, p { text-align: center; }
         h1{
@@ -54,23 +56,25 @@ body {
         }
     }
     .section {
-        @include gridle(11);
+        @include gridle_grid(11);
         @include gridle_grid_centered();
         padding: 50px 0;
         margin: 50px 0;
         border-radius: 4px;
         background: white;
         .inner {
-            @include gridle(11);
-            @include gridle(12, tablet);
-            @include gridle_no_gutter(tablet);
+            @include gridle_grid(11);
+            @include gridle_state(tablet) {
+                @include gridle_grid(12);
+                @include gridle_no_gutter();
+            }
             @include gridle_grid_centered();
             @include clear();
         }
     }
 }
 .about {
-    @include gridle(11);
+    @include gridle_grid(11);
     @include gridle_grid_centered();
     h2, h3 { text-align: center; padding: 20px 0; }
     img.grid-3 { padding-top: 20px; }
@@ -82,12 +86,12 @@ body {
     }
 }
 .issues {
-    @include gridle(10);
+    @include gridle_grid(10);
     @include gridle_grid_centered();
     padding: 30px 0;
     @include clear();
     .scroll {
-        overflow-y: scroll;
+        overflow-y: auto;
         margin: 20px 0 50px;
         table {
             th .img {
@@ -99,7 +103,7 @@ body {
             tr:nth-child(even) td { background: lighten($background, 30%); }
             td:first-child {
                 text-align: left;
-                font-weight: bold;
+                font-style: italic;
                 padding-left: 10px;
                 padding-right: 0;
                 min-width: 200px;
@@ -121,17 +125,17 @@ body {
     }
 }
 .candidate {
-    @include gridle(6);
-    // @include gridle(10, tablet);
-    min-height: 200px;
-    margin-bottom: 50px;
+    @include gridle_grid(6);
+    // @include gridle_grid(10, tablet);
+    min-height: 440px;
+    margin-bottom: 30px;
     @include gridle_state(tablet) {
         min-height: 200px;
         @include gridle_grid_centered();
     }
     .social {
         text-align: center;
-        @include gridle(12);
+        @include gridle_grid(12);
 
         @include gridle_state(mobile) { text-align: center; padding-left: 0;}
         @include gridle_state(tablet) { @include gridle_grid_centered(); }
@@ -143,11 +147,25 @@ body {
             margin: 4px auto;
         }
     }
+    .endorsements {
+        @include gridle_state(mobile) {
+            @include gridle_grid(12);
+            left: 0;
+        }
+        @include gridle_state(tablet) {
+            @include gridle_grid_centered();
+            @include gridle_grid(10);
+            @include gridle_push(1);
+        }
+        @include gridle_grid(7);
+        @include gridle_push(3);
+        padding-top: 10px;
+    }
     .bio {
         padding-left: 0;
         padding-right: 0;
         min-height: 120px;
-        @include gridle(12);
+        @include gridle_grid(12);
     }
     .img {
         @include frame(100px);
@@ -155,9 +173,9 @@ body {
     }
 }
 .counselor {
-    @include gridle(4);
-    @include gridle(6, tablet);
-    @include gridle(10, mobile);
+    @include gridle_grid(4);
+    @include gridle_state(tablet) { @include gridle_grid(6); }
+    @include gridle_state(mobile) { @include gridle_grid(10); }
     text-align: center;
     div.img {
         @include frame(60px);
@@ -187,22 +205,26 @@ body {
     margin: 50px 0;
 }
 .measure {
-    @include gridle(12);
+    @include gridle_grid(12);
 
-    .choice { margin: 30px 0; @include gridle(12); }
+    .choice { margin: 30px 0; @include gridle_grid(12); }
     .thumb {
-        @include gridle(1);
+        @include gridle_grid(1);
         @include gridle_state(mobile) {
             padding-bottom: 20px;
             @include gridle_grid_centered();
         }
     }
     .explanation {
-        @include gridle(10);
-        @include gridle(11, tablet);
-        @include gridle(12, mobile);
-        @include gridle_push(1, tablet);
-        @include gridle_push(0, mobile);
+        @include gridle_grid(10);
+        @include gridle_state(mobile) {
+            @include gridle_grid(12);
+            @include gridle_push(0);
+        }
+        @include gridle_state(tablet) {
+            @include gridle_push(1);
+            @include gridle_grid(11);
+        }
     }
     h4 { color: $second-emphasis; }
     h2, h4, h5 { span { text-transform: uppercase; }}
@@ -233,53 +255,6 @@ body {
             }
         }
     }
-}
-#search_form {
-    @include gridle_grid_centered();
-    @include gridle(10);
-    @include gridle(12, mobile);
-
-    input {
-        @include gridle(8);
-        @include gridle(12, mobile);
-    }
-    button {
-        @include gridle_push(1);
-        @include gridle(3);
-        @include gridle(12, mobile);
-        @include gridle_push(0, mobile);
-        @include gridle_state(mobile) { @include gridle_grid_centered(); }
-        color: $emphasis;
-    }
-    @include clear();
-    margin-bottom: 30px;
-}
-.map_container {
-    margin: 50px 0 0;
-
-    @include gridle(10);
-    @include gridle_grid_centered();
-
-    @include clear();
-}
-#map_canvas {
-
-    width: 100%;
-    margin: 30px auto;
-    display: none;
-
-    height: 400px;
-    @include gridle_state(tablet) { height: 300px; }
-}
-#the_cover {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: black;
-    z-index: 10;
-    opacity: 0.8;
 }
 a.vote_for {
     position: absolute;

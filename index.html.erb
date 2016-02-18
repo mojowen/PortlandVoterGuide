@@ -73,9 +73,44 @@
             </a>
           <% end %>
         </div>
+        <div class="endorsements">
+          <h4>Endorsed By:</h4>
+          <ul >
+            <% candidate["endorsements"].split(',').each do |endorsement| %>
+              <li><%= endorsement %></li>
+            <% end %>
+          </ul>
+        </div>
         <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/candidates/<%= make_uri candidate['office'] %>-<%= make_uri candidate['name'] %>.html" data-office="<%= candidate['office'] %>" onclick="endorsementWidget(this)">endorse</a>
       </div>
     <% end %>
+    </div>
+    <div class="issues">
+      <h3>Where They Stand</h3>
+      <div class="scroll">
+        <table>
+        <thead>
+          <tr>
+            <th></th>
+            <% @candidates.each do |candidate| %>
+              <th>
+                <div class="img" style="background-image: url(<%= candidate["photo"] %>);" ></div>
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| %>
+            <tr>
+              <td class="question"><%= question %></td>
+                <% @candidates.each do |candidate| %>
+                  <td><%= candidate[question.downcase] %></td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

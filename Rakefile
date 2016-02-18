@@ -74,7 +74,7 @@ task all: [:candidates] do
 end
 
 task :sharing do
-    candidates = candidates_data
+    candidates, _ = candidates_data
 
     build = {
         'candidates' => candidates,

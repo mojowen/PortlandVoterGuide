@@ -2,7 +2,9 @@ require 'json'
 require 'erb'
 
 def candidates_data
-    JSON.parse(File.read('data/candidates.json'))
+    candidates = JSON.parse(File.read('data/candidates.json'))
+    questions = candidates.first.keys.reject{ |k| k[-1] != "?" }.map(&:capitalize)
+    [candidates, questions]
 end
 def measures_data
     JSON.parse(File.read('data/measures.json'))
@@ -42,7 +44,7 @@ class Controller
 
     def index
         @meta_partial = set_meta
-        @candidates = candidates_data
+        @candidates, @questions = candidates_data
         @contests = @candidates.map{ |cand| cand['office'] }.uniq
     end
 
