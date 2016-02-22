@@ -41,7 +41,22 @@
           <h3>Early Voting</h3>
           <p>From February 29 through March 12, all 51 Early Voting sites will be open Monday through Saturday from 9am - 5pm. Go to chicagoelections.com to find a location near you.  Please bring a government photo ID during early voting. For both “Grace Period” and “Early Voting” you will register and vote in the same day.</p>
           <p>To find polling locations for Election Day or early voting go to <a target="_blank" href="http://chicagoelections.com">chicagoelections.com</a></p>
+          <h3> Know Your Voting Rights</h3>
+          <p>If you see something off at your polling location, report it to the National Lawyers' Committee for Civil Rights Under Law's Election Protection: <a href="tel:1-866-OUR-VOTE">1-866-OUR-VOTE</a></p>
 
+          <p>If you are in line by 7pm, you cannot be turned away from your polling location. You have the right to stay in line until you cast your ballot.</p>
+
+          <p>Bring your child (under 18) into the voting booth with you.</p>
+
+          <p>You can vote at your old polling location if you have moved within 30 days of the election.</p>
+
+          <p>You can bring a sample ballot into the polling booth to reference.
+
+          <p>If you have a felony, you are allowed to register and vote in the state of Illinois.</p>
+
+          <p>Any voter registered in the City of Chicago may use any Early Voting site in the city, regardless of where the voter lives.</p>
+
+          <p>If the Election Judge challenges a voter based on a mismatch of signatures or if the voter does not appear on the voter roll, ask the Election Judge to check the “supplemental” poll list.  You can also ask to fill out a provisional ballot.</p>
           <h3>Brought to you by</h3>
           <div class="grid-12 clear">
             <a target="_blank" href="http://chicagovotes.com"><img style="margin: 0 auto; display: block; width: 300px;" src="/images/chicagovotes.png"></a>
@@ -76,7 +91,7 @@
         <div class="endorsements">
           <h4>Endorsed By:</h4>
           <ul >
-            <% candidate["endorsements"].split(',').each do |endorsement| %>
+            <% candidate["endorsements"].split('|').each do |endorsement| %>
               <li><%= endorsement %></li>
             <% end %>
           </ul>
