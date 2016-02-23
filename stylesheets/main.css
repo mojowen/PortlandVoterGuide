@@ -168,7 +168,7 @@ strong {
   padding-right: 20px;
   padding-left: 20px; }
 
-.push-0, .push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12, .candidate .endorsements, .counselor.row-1, .counselor.row-2 {
+.push-0, .push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12, .candidate .endorsements, .candidate .bio, .counselor.row-1, .counselor.row-2 {
   position: relative; }
 
 .pull-0, .pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12 {
@@ -203,7 +203,7 @@ strong {
   .row\@mobile, .row-reverse\@mobile {
     zoom: 1; } }
 @media screen and (max-width: 480px) {
-  .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, .container .header, .candidate .endorsements, .counselor, .measure .explanation {
+  .gr-0\@mobile, .gr-1\@mobile, .gr-2\@mobile, .gr-3\@mobile, .gr-4\@mobile, .gr-5\@mobile, .gr-6\@mobile, .gr-7\@mobile, .gr-8\@mobile, .gr-9\@mobile, .gr-10\@mobile, .gr-11\@mobile, .gr-12\@mobile, .container .header, .candidate .endorsements, .candidate .bio, .counselor, .measure .explanation {
     display: inline-block;
     min-height: 1px;
     float: left;
@@ -270,7 +270,7 @@ strong {
   .row\@tablet, .row-reverse\@tablet {
     zoom: 1; } }
 @media screen and (max-width: 720px) {
-  .gr-0\@tablet, .gr-1\@tablet, .gr-2\@tablet, .gr-3\@tablet, .gr-4\@tablet, .gr-5\@tablet, .gr-6\@tablet, .gr-7\@tablet, .gr-8\@tablet, .gr-9\@tablet, .gr-10\@tablet, .gr-11\@tablet, .gr-12\@tablet, .container .section .inner, .candidate .endorsements, .counselor, .measure .explanation {
+  .gr-0\@tablet, .gr-1\@tablet, .gr-2\@tablet, .gr-3\@tablet, .gr-4\@tablet, .gr-5\@tablet, .gr-6\@tablet, .gr-7\@tablet, .gr-8\@tablet, .gr-9\@tablet, .gr-10\@tablet, .gr-11\@tablet, .gr-12\@tablet, .container .section .inner, .candidate, .candidate .endorsements, .candidate .bio, .counselor, .measure .explanation {
     display: inline-block;
     min-height: 1px;
     float: left;
@@ -303,7 +303,7 @@ strong {
     padding-right: 20px;
     padding-left: 20px; } }
 @media screen and (max-width: 720px) {
-  .push-0\@tablet, .push-1\@tablet, .push-2\@tablet, .push-3\@tablet, .push-4\@tablet, .push-5\@tablet, .push-6\@tablet, .push-7\@tablet, .push-8\@tablet, .push-9\@tablet, .push-10\@tablet, .push-11\@tablet, .push-12\@tablet, .candidate .endorsements, .measure .explanation {
+  .push-0\@tablet, .push-1\@tablet, .push-2\@tablet, .push-3\@tablet, .push-4\@tablet, .push-5\@tablet, .push-6\@tablet, .push-7\@tablet, .push-8\@tablet, .push-9\@tablet, .push-10\@tablet, .push-11\@tablet, .push-12\@tablet, .candidate .endorsements, .candidate .bio, .measure .explanation {
     position: relative; } }
 @media screen and (max-width: 720px) {
   .pull-0\@tablet, .pull-1\@tablet, .pull-2\@tablet, .pull-3\@tablet, .pull-4\@tablet, .pull-5\@tablet, .pull-6\@tablet, .pull-7\@tablet, .pull-8\@tablet, .pull-9\@tablet, .pull-10\@tablet, .pull-11\@tablet, .pull-12\@tablet {
@@ -317,7 +317,7 @@ strong {
   .wrap\@tablet {
     white-space: normal; } }
 @media screen and (max-width: 720px) {
-  .gr-centered\@tablet, .candidate, .candidate .social, .candidate .endorsements {
+  .gr-centered\@tablet, .candidate, .candidate .social, .candidate .endorsements, .candidate .bio {
     display: block !important;
     float: none !important;
     margin-left: auto !important;
@@ -1599,7 +1599,7 @@ body {
       width: 91.66667%; }
       @media screen and (max-width: 720px) {
         .container .section .inner {
-          width: 100%;
+          width: 91.66667%;
           padding-top: 0;
           padding-right: 0;
           padding-bottom: 0;
@@ -1668,12 +1668,13 @@ body {
       padding: 30px 0; } }
 
 .candidate {
-  width: 50%;
+  width: 33.33333%;
   min-height: 440px;
   margin-bottom: 30px; }
   @media screen and (max-width: 720px) {
     .candidate {
-      min-height: 200px; } }
+      min-height: 200px;
+      width: 83.33333%; } }
   .candidate .social {
     text-align: center;
     width: 100%;
@@ -1686,23 +1687,22 @@ body {
     .candidate .social a {
       font-size: 10px;
       margin: 4px auto; }
-  .candidate .endorsements {
+  .candidate .endorsements, .candidate .bio {
     width: 58.33333%;
     left: 25%;
     padding-top: 10px; }
     @media screen and (max-width: 480px) {
-      .candidate .endorsements {
+      .candidate .endorsements, .candidate .bio {
         width: 100%;
         left: 0; } }
     @media screen and (max-width: 720px) {
-      .candidate .endorsements {
+      .candidate .endorsements, .candidate .bio {
         width: 83.33333%;
         left: 8.33333%; } }
   .candidate .bio {
     padding-left: 0;
     padding-right: 0;
-    min-height: 120px;
-    width: 100%; }
+    min-height: 120px; }
   .candidate .img {
     width: 100px;
     height: 100px;
@@ -1743,6 +1743,11 @@ body {
   .counselor.row-2 {
     left: 16.66667%;
     left: 0%; }
+
+.sources {
+  word-wrap: break-word;
+  margin-bottom: 20px;
+  font-size: 10px; }
 
 .district {
   margin: 50px 0; }
