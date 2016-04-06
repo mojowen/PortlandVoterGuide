@@ -33,20 +33,20 @@ table {
   border-spacing: 0; }
 
 h1 {
-  color: #d81b59;
+  color: #d5a50b;
   font-size: 2em;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: #26aac6 -1px 1px 1px; }
+  text-shadow: #6793c4 -1px 1px 1px; }
 
 h2 {
-  color: #6fcfe3;
+  color: #b0c7e1;
   font-size: 1.5em;
   font-weight: 300; }
 
 h3 {
-  color: #d81b59;
+  color: #d5a50b;
   text-transform: uppercase; }
 
 h4, h5 {
@@ -74,9 +74,9 @@ p, li {
 
 a:hover, a:active {
   text-decoration: underline;
-  color: lighter(#d81b59, 10%); }
+  color: lighter(#d5a50b, 10%); }
 a, a:visited {
-  color: #ab1546;
+  color: #a47f09;
   text-decoration: none; }
 
 em {
@@ -88,14 +88,14 @@ strong {
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0 auto;
-  background: #26aac6 url("/images/wrap.png");
+  background: #034110 url("/images/wrap.png");
   padding: 30px 0; }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 1% 0;
-  color: #7091a3;
+  color: #666;
   text-align: center;
   line-height: 2em; }
   .container .section {
@@ -105,7 +105,7 @@ body {
     border-radius: 4px;
     background: white; }
   .container textarea, .container input {
-    color: #d81b59; }
+    color: #d5a50b; }
   .container textarea {
     border: 1px solid lightgrey;
     resize: none;

@@ -1,13 +1,13 @@
 {
-  "url": "http://www.chicagovoterguide.org",
-  "title": "2016 State's Attorney",
-  "description": "Vote by Tuesday, March 15th in the 2016 Cook County Election. Check out our voter guide to see who and what will be on your ballot.",
+  "url": "http://www.portlandvoterguide.org",
+  "title": "2016 Portland Mayoral",
+  "description": "Vote by Tuesday, May 17th in the 2016 Portland Mayoral Eleciton. Check out our voter guide to see who and what will be on your ballot.",
   "image": "/images/sharable.png",
-	"twitter_name": "chicagovotes",
-	"twitter_hashtag": "CookCountyVotes2016",
-	"date": "Tuesday, March 15th",
-	"repo": "https://github.com/mojowen/chicagovoterguide",
-	"city": "Chicago",
-	"state": "Illinois",
-	"state_abv": "IL"
+	"twitter_name": "",
+	"twitter_hashtag": "PDXVotes2016",
+	"date": "Tuesday, May 17th",
+	"repo": "https://github.com/mojowen/PortlandVoterGuide",
+	"city": "Portland",
+	"state": "Oregon",
+	"state_abv": "OR"
 }

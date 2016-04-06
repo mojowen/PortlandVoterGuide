@@ -65,20 +65,20 @@ table {
   border-spacing: 0; }
 
 h1 {
-  color: #d81b59;
+  color: #d5a50b;
   font-size: 2em;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: #26aac6 -1px 1px 1px; }
+  text-shadow: #6793c4 -1px 1px 1px; }
 
 h2 {
-  color: #6fcfe3;
+  color: #b0c7e1;
   font-size: 1.5em;
   font-weight: 300; }
 
 h3 {
-  color: #d81b59;
+  color: #d5a50b;
   text-transform: uppercase; }
 
 h4, h5 {
@@ -106,9 +106,9 @@ p, li {
 
 a:hover, a:active {
   text-decoration: underline;
-  color: lighter(#d81b59, 10%); }
+  color: lighter(#d5a50b, 10%); }
 a, a:visited {
-  color: #ab1546;
+  color: #a47f09;
   text-decoration: none; }
 
 em {
@@ -1559,14 +1559,14 @@ body {
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0 auto;
-  background: #26aac6 url("/images/wrap.png");
+  background: #034110;
   padding: 30px 0; }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 50px 0;
-  color: #7091a3; }
+  color: #666; }
   .container .header {
     width: 66.66667%; }
     @media screen and (max-width: 480px) {
@@ -1647,7 +1647,7 @@ body {
     .issues .scroll table th h4 {
       font-size: 10px; }
     .issues .scroll table tr:nth-child(even) td {
-      background: #99ddec; }
+      background: #0ad334; }
     .issues .scroll table td:first-child {
       text-align: left;
       font-style: italic;
@@ -1777,7 +1777,7 @@ body {
         left: 8.33333%;
         width: 91.66667%; } }
   .measure h4 {
-    color: #26aac6; }
+    color: #6793c4; }
   .measure h2 span, .measure h4 span, .measure h5 span {
     text-transform: uppercase; }
   .measure span.fa {
@@ -1789,9 +1789,9 @@ body {
     font-size: 30px;
     color: white; }
     .measure span.fa.no {
-      background: #7d1034; }
+      background: #990000; }
     .measure span.fa.yes {
-      background: #2f8f44; }
+      background: #027F45; }
     .measure span.fa:before {
       line-height: 50px; }
   .measure .recommendation {
@@ -1799,9 +1799,9 @@ body {
     .measure .recommendation span.fa {
       margin: 0; }
     .measure .recommendation span.yay-or-nay.no {
-      color: #7d1034; }
+      color: #990000; }
     .measure .recommendation span.yay-or-nay.yes {
-      color: #2f8f44; }
+      color: #027F45; }
     @media screen and (max-width: 480px) {
       .measure .recommendation {
         text-align: center; }
@@ -1816,9 +1816,9 @@ a.vote_for {
   width: 84px;
   margin-left: -42px;
   text-transform: uppercase;
-  color: #7d1034;
+  color: #990000;
   cursor: pointer;
-  background: #26aac6;
+  background: #6793c4;
   padding: 4px 8px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -1864,21 +1864,21 @@ a.vote_for {
       right: 0;
       min-height: 70px; }
       .now_voting_for .outers .inners strong {
-        color: #fab815; }
+        color: #027F45; }
       .now_voting_for .outers .inners .socials {
         padding: 10px 0;
         text-align: center;
         display: inline-block; }
         .now_voting_for .outers .inners .socials a {
           text-decoration: none;
-          background: #26aac6;
-          color: #d81b59;
+          background: #6793c4;
+          color: #d5a50b;
           margin: 0 16px -8px;
           font-size: 16px;
           width: 20px;
           position: relative; }
           .now_voting_for .outers .inners .socials a:before {
-            background: #26aac6;
+            background: #6793c4;
             height: 20px;
             width: 20px;
             border-radius: 100%;
@@ -1889,5 +1889,5 @@ a.vote_for {
             padding: 4px 4px 2px;
             font-size: 16px; }
           .now_voting_for .outers .inners .socials a.clicked:before, .now_voting_for .outers .inners .socials a:hover:before, .now_voting_for .outers .inners .socials a:active:before {
-            background: #d81b59;
-            color: #26aac6; }
+            background: #d5a50b;
+            color: #6793c4; }

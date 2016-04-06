@@ -1,17 +1,18 @@
+$yellow: darken(#F3C120, 10%);
+$green: #027F45;
+$timbers_green: #034110;
+$blue: lighten(#4579B3, 10%);
+$grey: #666;
+
+$red: red;
 
 
-$blue: #26aac6;
-$grey-blue: #7091a3;
-$pink: #d81b59;
-$yellow: #fab815;
-$green: #2f8f44;
-
-$emphasis: $pink;
+$emphasis: $yellow;
 $second-emphasis: $blue;
-$third-emphasis: $yellow;
+$third-emphasis: $green;
 $fourth-emphasis: $green;
 
-$background: $blue;
-$type: $grey-blue;
-$color-no: darken($pink, 20%);
+$background: $timbers_green;
+$type: $grey;
+$color-no: darken($red, 20%);
 $color-yes: $green;
