@@ -1696,7 +1696,7 @@ body {
   .candidate .endorsements, .candidate .bio {
     width: 58.33333%;
     left: 25%;
-    padding-top: 10px; }
+    padding-top: 20px; }
     @media screen and (max-width: 480px) {
       .candidate .endorsements, .candidate .bio {
         width: 100%;
