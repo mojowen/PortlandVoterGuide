@@ -9,6 +9,9 @@ end
 def measures_data
     JSON.parse(File.read('data/measures.json'))
 end
+def contest_data
+    JSON.parse(File.read('data/contests.json'))
+end
 def get_ordinal n
     n = n.to_i
     s = ["th","st","nd","rd"]
@@ -45,7 +48,9 @@ class Controller
     def index
         @meta_partial = set_meta
         @candidates, @questions = candidates_data
-        @contests = @candidates.map{ |cand| cand['office'] }.uniq
+        @measures = measures_data
+        @candidates = @candidates.group_by{ |cand| cand['office'] }
+        @contests = contest_data
     end
 
     def candidates candidate

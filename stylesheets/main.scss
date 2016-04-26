@@ -70,6 +70,12 @@ body {
             }
             @include gridle_grid_centered();
             @include clear();
+            @include gridle_state(mobile) {
+                h1, h2, h3, h4, h5, p {
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+            }
         }
     }
 }
@@ -126,7 +132,8 @@ body {
 }
 .candidate {
     @include gridle_grid(4);
-    min-height: 440px;
+    min-height: 200px;
+    &.mayor { min-height: 440px; }
     margin-bottom: 30px;
     @include gridle_state(tablet) {
         min-height: 200px;
@@ -170,6 +177,14 @@ body {
         @include frame(100px);
         margin: 0 auto;
     }
+    &.row-1 { @include gridle_push(4); }
+    &.row-2 {
+        @include gridle_push(2);
+        @include gridle_state(tablet) {
+            @include gridle_push(0);
+            @include gridle_grid(10);
+        }
+    }
 }
 .counselor {
     @include gridle_grid(4);
@@ -193,11 +208,6 @@ body {
         margin: 20px 0;
     }
     min-height: 150px;
-    &.row-1 { @include gridle_push(4); }
-    &.row-2 {
-        @include gridle_push(2);
-        @include gridle_push(0, tablet);
-    }
 }
 .sources {
     word-wrap: break-word;
@@ -220,14 +230,28 @@ body {
         }
     }
     .explanation {
-        @include gridle_grid(10);
+        @include gridle_grid(6);
         @include gridle_state(mobile) {
             @include gridle_grid(12);
             @include gridle_push(0);
         }
         @include gridle_state(tablet) {
-            @include gridle_push(1);
-            @include gridle_grid(11);
+            @include gridle_push(2);
+            @include gridle_grid(10);
+        }
+    }
+    .endorsements {
+        @include gridle_grid(5);
+        padding-bottom: 50px;
+        @include gridle_state(tablet) {
+            @include gridle_push(4);
+            @include gridle_grid(8);
+            @include clear();
+        }
+        @include gridle_state(mobile) {
+            @include gridle_push(2);
+            @include gridle_grid(10);
+            @include clear();
         }
     }
     h4 { color: $second-emphasis; }

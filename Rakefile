@@ -45,6 +45,9 @@ task :candidates do
     download_csv_photos 'candidates'
     csv_to_json 'candidates'
 end
+task :measures do
+    csv_to_json 'measures'
+end
 task :erb, :paths do |t,args|
     """
     Rebuild HTML pages.
