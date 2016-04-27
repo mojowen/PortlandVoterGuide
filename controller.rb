@@ -9,6 +9,9 @@ end
 def measures_data
     JSON.parse(File.read('data/measures.json'))
 end
+def ted_data
+    JSON.parse(File.read('data/ted.json'))
+end
 def contest_data
     JSON.parse(File.read('data/contests.json'))
 end
@@ -51,6 +54,7 @@ class Controller
         @measures = measures_data
         @candidates = @candidates.group_by{ |cand| cand['office'] }
         @contests = contest_data
+        @ted = ted_data
     end
 
     def candidates candidate

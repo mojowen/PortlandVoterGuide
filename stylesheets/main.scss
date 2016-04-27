@@ -167,6 +167,7 @@ body {
         @include gridle_grid(7);
         @include gridle_push(3);
         padding-top: 20px;
+        font-size: 80%;
     }
     .bio {
         padding-left: 0;
