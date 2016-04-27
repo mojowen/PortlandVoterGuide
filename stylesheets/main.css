@@ -1675,7 +1675,7 @@ body {
   width: 33.33333%;
   min-height: 200px;
   margin-bottom: 30px; }
-  .candidate.mayor {
+  .candidate.endorsements {
     min-height: 440px; }
   @media screen and (max-width: 720px) {
     .candidate {

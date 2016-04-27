@@ -21,7 +21,7 @@
     <div class="inner" id="Mayor">
       <h2>Portland Mayor</h2>
       <% @candidates["Portland Mayor"].each do |candidate| %>
-         <div class="candidate mayor <%= "row-#{[nil,1,2][@candidates.length]}" if @candidates.length < 3 %>">
+         <div class="candidate <%= "row-#{[nil,1,2][@candidates.length]}" if @candidates.length < 3 %> endorsements">
           <h2><%= candidate['name'] %></h2>
           <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
           <div class="social">
@@ -82,7 +82,7 @@
         <h2><%= contest %></h2>
         <p><%= desc %>
         <% @candidates[contest].each do |candidate| %>
-          <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %>">
+          <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %> <%= 'endorsements' if candidate['endorsements'] %>">
           <h2><%= candidate['name'] %></h2>
           <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
           <div class="social">
@@ -99,6 +99,16 @@
               </a>
             <% end %>
           </div>
+          <% if candidate['endorsements'] %>
+            <div class="endorsements">
+              <h4>Endorsed By:</h4>
+              <ul >
+                <% candidate["endorsements"].split('|').each do |endorsement| %>
+                  <li><%= endorsement %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/candidates/<%= make_uri candidate['office'] %>-<%= make_uri candidate['name'] %>.html" data-office="<%= candidate['office'] %>" onclick="endorsementWidget(this)">endorse</a>
           </div>
         <% end %>

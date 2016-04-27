@@ -133,7 +133,7 @@ body {
 .candidate {
     @include gridle_grid(4);
     min-height: 200px;
-    &.mayor { min-height: 440px; }
+    &.endorsements { min-height: 440px; }
     margin-bottom: 30px;
     @include gridle_state(tablet) {
         min-height: 200px;
