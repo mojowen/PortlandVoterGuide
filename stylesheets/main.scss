@@ -132,7 +132,7 @@ body {
 }
 .candidate {
     @include gridle_grid(4);
-    min-height: 280px;
+    min-height: 300px;
     &.long { min-height: 480px; }
     margin-bottom: 30px;
     @include gridle_state(tablet) {
