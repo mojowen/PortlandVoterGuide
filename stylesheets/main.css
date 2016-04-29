@@ -1673,7 +1673,7 @@ body {
 
 .candidate {
   width: 33.33333%;
-  min-height: 240px;
+  min-height: 280px;
   margin-bottom: 30px; }
   .candidate.long {
     min-height: 480px; }
