@@ -168,7 +168,7 @@ body {
         @include gridle_push(3);
         padding-top: 20px;
         font-size: .8em;
-        ul + ul { margin-top: 10px }
+        h4 { padding-top: 10px }
     }
     .bio {
         padding-left: 0;

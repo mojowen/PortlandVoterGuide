@@ -1706,8 +1706,8 @@ body {
       .candidate .endorsements, .candidate .bio {
         width: 83.33333%;
         left: 8.33333%; } }
-    .candidate .endorsements ul + ul, .candidate .bio ul + ul {
-      margin-top: 10px; }
+    .candidate .endorsements h4, .candidate .bio h4 {
+      padding-top: 10px; }
   .candidate .bio {
     padding-left: 0;
     padding-right: 0;
