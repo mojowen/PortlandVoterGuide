@@ -21,7 +21,7 @@
     <div class="inner" id="Mayor">
       <h2>Portland Mayor</h2>
       <% @candidates["Portland Mayor"].each do |candidate| %>
-         <div class="candidate <%= "row-#{[nil,1,2][@candidates.length]}" if @candidates.length < 3 %> endorsements">
+         <div class="candidate <%= "row-#{[nil,1,2][@candidates.length]}" if @candidates.length < 3 %> long">
           <h2><%= candidate['name'] %></h2>
           <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
           <div class="social">
@@ -45,45 +45,74 @@
                 <li><%= endorsement %></li>
               <% end %>
             </ul>
+            <% if candidate['media'] %>
+              <h4>Newspapers:</h4>
+              <ul >
+                <% (candidate["media"] || '').split('|').each do |endorsement| %>
+                  <li><%= endorsement %></li>
+                <% end %>
+              </ul>
+            <% end %>
           </div>
           <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/candidates/<%= make_uri candidate['office'] %>-<%= make_uri candidate['name'] %>.html" data-office="<%= candidate['office'] %>" onclick="endorsementWidget(this)">endorse</a>
         </div>
       <% end %>
     </div>
     <div class="issues">
+      <h3>Where They Stand</h3>
+      <div class="scroll">
+        <table>
+        <thead>
+          <tr>
+            <th></th>
+            <% @candidates["Portland Mayor"].each do |candidate| %>
+              <th>
+                <div class="img" style="background-image: url(<%= candidate["photo"] %>);" ></div>
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |question| %>
+            <tr>
+              <td class="question"><%= question %></td>
+                <% @candidates["Portland Mayor"].each do |candidate| %>
+                  <td><%= candidate[question.downcase] %></td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </div>
 
-      <h2>Coming Soon!</h2>
-      <p>We are still collecting information on the Porltand Mayoral candidates - our current list of questions include:</p>
-      <ul>
-        <li>Do you support Portland becoming a Sanctuary City so that all immigrants can live without fear of being separated from their families?</li>
-        <li>Do you support gender equity for city boards?</li>
-        <li>Do you support the City of Portland creating a new office to regulate air pollution?</li>
-        <li>As Mayor would you require city agencies to regularly conduct equity audits looking at hiring and promotion of city staff and contractors to ensure equal pay and increased diversity across and within departments?</li>
-        <li>Do you support public funding for campaign finance?</li>
-        <li>Do you support legal and safe spaces to socially consume cannabis?</li>
-        <li>Do you support repealing the 48 hour rule, which allows police to not answer questions about an incident for 48 hours after using force?</li>
-        <li>Do you support immediate freeze on rent prices in Portland?</li>
-        <li>Do you support allowing homeless families to live in temporary tent communities?</li>
-        <li>Do you believe in using congestion fees to improve commutes and public transit?</li>
+      <h2>Sources:</h2>
+      <ul class="sources">
+        <li><a href="http://www.oregonlive.com/politics/index.ssf/2015/12/10_questions_bailey_vs_wheeler.html" target="_blank">http://www.oregonlive.com/politics/index.ssf/2015/12/10_questions_bailey_vs_wheeler.html</a></li>
+        <li><a href="http://www.theskanner.com/news/northwest/23619-mayoral-candidate-positions" target="_blank">http://www.theskanner.com/news/northwest/23619-mayoral-candidate-positions</a></li>
+        <li><a href="http://www.portlandmercury.com/feature/2016/04/27/17972134/shake-up-the-city" target="_blank">http://www.portlandmercury.com/feature/2016/04/27/17972134/shake-up-the-city</a></li>
+        <li><a href="http://www.wweek.com/2016/04/18/rent-freeze-now-says-portland-mayoral-candidate-sarah-iannarone/" target="_blank">http://www.wweek.com/2016/04/18/rent-freeze-now-says-portland-mayoral-candidate-sarah-iannarone/</a></li>
+        <li><a href="http://portlandtribune.com/pt/9-news/301238-179095-bailey-calls-for-rent-control-in-portland-mayors-race" target="_blank">http://portlandtribune.com/pt/9-news/301238-179095-bailey-calls-for-rent-control-in-portland-mayors-race</a></li>
+        <li><a href="http://news.streetroots.org/2016/04/10/portlands-mayoral-candidates-take-street-roots-pop-quiz" target="_blank">http://news.streetroots.org/2016/04/10/portlands-mayoral-candidates-take-street-roots-pop-quiz</a></li>
+        <li><a href="http://www.julesbailey.com/plan/" target="_blank">http://www.julesbailey.com/plan/</a></li>
+        <li><a href="http://sarahforportland.com/issues/" target="_blank">http://sarahforportland.com/issues/</a></li>
       </ul>
-      <br/>
-      <p>Suggestions are more than welcome - <a href="mailto:info@portlandvoterguide.org">get in touch</a></p>
-      <br />
-      <div style="display:none;">
+
+      <div class="ted" style="padding: 10px 0;">
+        <br />
         <h2>Extra Questions and Answers for Ted Wheeler</h2>
         <p>The Ted Wheeler Campaign was the only campaign to directly respond to our original questionnaire and question list. In recognition of their attentiveness to democracy and commitment to informed voters everywhere, here are the extra questions and their full responses:</p>
         <% @ted.each do |k,v| %>
-          <h3><%= k %></h3>
-          <p><%= v %></p>
+          <p><strong><%= k %></strong>: <%= v %></p>
         <% end %>
       </div>
+
       <h3>Brought to you by</h3>
       <div style="margin: 0 10%; display: block;">
 
         <a target="_blank" href="http://busproject.org"><img style="margin: 0 auto; display: block; width: 120px;" src="/images/logo.jpg"></a>
         <p style="font-size: 0.75em; text-align: center; max-width: 400px; display: block; margin: 0 auto;" class="clear">And you can find all the <a href="https://github.com/mojowen/portlandvoterguide" target="_blank">code and whatever right here</a> and oh yeah it was built by <a target="_blank" href="http://twitter.com/sduncombe">this person</a>.</p>
+
       </div>
-    </div>
   </div>
   <% @contests.each do |contest, desc| %>
     <div class="section">
@@ -91,7 +120,7 @@
         <h2><%= contest %></h2>
         <p><%= desc %>
         <% @candidates[contest].each do |candidate| %>
-          <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %> <%= 'endorsements' if candidate['endorsements'] %>">
+          <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %> <%= 'long' if ['State House District 43 Democratic Primary', 'Secretary of State Democratic Primary'].index(contest) %>">
           <h2><%= candidate['name'] %></h2>
           <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
           <div class="social">
@@ -113,6 +142,16 @@
               <h4>Endorsed By:</h4>
               <ul >
                 <% candidate["endorsements"].split('|').each do |endorsement| %>
+                  <li><%= endorsement %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <% if candidate['media'] %>
+            <div class="endorsements">
+              <h4>Newspapers:</h4>
+              <ul >
+                <% candidate["media"].split('|').each do |endorsement| %>
                   <li><%= endorsement %></li>
                 <% end %>
               </ul>

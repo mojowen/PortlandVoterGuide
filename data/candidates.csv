@@ -1,21 +1,26 @@
-office,name,email,website,facebook,twitter,photo,endorsements
-Portland Mayor,Sarah Iannarone,info@sarahforportland.com,http://sarahforportland.com/,https://www.facebook.com/sarahforportland,https://twitter.com/sarahforpdx,images/candidates/sarah.png,"Portland Mercury|Bike Walk Vote PAC|Anita Yap, Advocate, East Portland"
-Portland Mayor,Ted Wheeler,info@tedwheeler.com,http://www.tedwheeler.com/,https://www.facebook.com/TedWheelerForOregon,https://twitter.com/tedwheeler,images/candidates/ted.jpg,"Tom Potter, Former Mayor of Portland|Sam Adams, Former Mayor of Portland|Portland Business Alliance"
-Portland Mayor,Jules Bailey,District1@multco.us,http://www.julesbailey.com/,https://www.facebook.com/juleskbailey,https://twitter.com/juleskbailey,images/candidates/jules.jpg,Portland Police Association|Oregon League of Conservation Voters|Portland Association of Teachers
-State House District 43 Democratic Primary,Roberta Phillip-Robbins,,http://www.robertafororegon.com/,https://www.facebook.com/robertafororegon/?fref=ts,,images/candidates/roberta.png,State Representative Lew Frederick|Multnomah County Chair Deborah Kafoury|Mother PAC
-State House District 43 Democratic Primary,Tawna Sanchez,,http://www.tawnasanchez.com/,https://www.facebook.com/tawna4oregonhd43/,https://twitter.com/tawna4oregon,images/candidates/tawna.png,"Sam Adams, Former Mayor of Portland|Oregon Building Trades Council|Representative Joe Gallegos"
-Secretary of State Democratic Primary,Brad Avakian,,http://www.bradavakian.com/,https://www.facebook.com/BradAvakianOregon,https://twitter.com/bradavakian,images/candidates/brad.jpeg,Oregon League of Conservation Voters|Oregon Chapter of the Sierra Club|NARAL Pro-Choice Oregon PAC
-Secretary of State Democratic Primary,Richard Devlin,,http://devlinfororegon.com/,https://www.facebook.com/sendevlin,,images/candidates/devlin.png,Planned Parenthood PAC|Oregon Nurses Association|Oregon Building Trades Council
-Secretary of State Democratic Primary,Val Hoyle,,http://www.valhoyle.com/,https://www.facebook.com/Val-Hoyle-402748740707/,https://twitter.com/ValHoyle,images/candidates/val.png, Planned Parenthood PAC|Basic Rights Oregon Equality PAC|the Oregon Building Trades Council
-Secretary of State Republican Primary,Sid Leiken,,http://www.sidleiken.com/,https://www.facebook.com/SidLeikenForOregon/,,images/candidates/sid.png,
-Secretary of State Republican Primary,Dennis Richardson,,http://dennisrichardson.com/,https://www.facebook.com/DennisRichardsonforOregon,https://twitter.com/DRichardsonOR,images/candidates/dennis.png,
-Multnomah County Commissioner District 1,Sharon Meieran,,http://www.votesharon.com/,https://www.facebook.com/SharonMeieran/,,images/candidates/sharon.png,
-Multnomah County Commissioner District 1,Brian Wilson,,http://www.wilsonforportland.com/,https://www.facebook.com/BW4MC/,https://twitter.com/bw4mc,images/candidates/brian.jpeg,
-Multnomah County Commissioner District 1,Marisha Childs,,http://vote-marisha-childs.ruck.us/,,,images/candidates/marisa.jpg,
-Multnomah County Commissioner District 1,Eric Zimmerman,,http://www.ericzimmerman.org/,https://www.facebook.com/ericformultco/,https://twitter.com/EZ_PDX?ref_src=twsrc%5Etfw,images/candidates/eric.png,
-Multnomah County Commissioner District 1,Mel Rader,,http://www.melrader.com/,https://www.facebook.com/mel4mult,https://twitter.com/mel4mult,images/candidates/mel.png,
-Multnomah County Commissioner District 1,Wes Soderback,,,,,images/candidates/wes.jpg,
-Multnomah County Commissioner District 1,Ken Stokes,,,,,,
-Multnomah County Commissioner District 4,Amanda Schroeder,,http://www.amandaforeastcounty.com/about,https://www.facebook.com/Amanda-Schroeder-484098168437465/,,images/candidates/amanda.png,
-Multnomah County Commissioner District 4,Lori Stegmann,,http://voteloristegmann.com/,https://www.facebook.com/LoriStegmannLeadership/,,images/candidates/lori.png,
-Multnomah County Commissioner District 4,Stanley Dirks,,,,,,
+office,name,website,facebook,twitter,photo,endorsements,media,do you support the city of portland creating a new office to regulate air pollution?,"do you support repealing the 48 hour rule, which allows police to not answer questions about an incident for 48 hours after using force?",do you support immediate freeze on rent prices in portland?,do you support allowing homeless families to live in temporary tent communities?,do you believe in using congestion fees to improve commutes and public transit?
+Portland Mayor,Sarah Iannarone,http://sarahforportland.com/,https://www.facebook.com/sarahforportland,https://twitter.com/sarahforpdx,images/candidates/sarah.png,"Bike Walk Vote PAC|Anita Yap, Advocate, East Portland",Portland Mercury,Yes,Yes,Yes,Yes,Yes
+Portland Mayor,Ted Wheeler,http://www.tedwheeler.com/,https://www.facebook.com/TedWheelerForOregon,https://twitter.com/tedwheeler,images/candidates/ted.jpg,"Tom Potter, Former Mayor of Portland|Sam Adams, Former Mayor of Portland|Portland Business Alliance",The Oregonian|The Portland Tribune,Yes,Yes,No,No,N/A
+Portland Mayor,Jules Bailey,http://www.julesbailey.com/,https://www.facebook.com/juleskbailey,https://twitter.com/juleskbailey,images/candidates/jules.jpg,Portland Police Association|Oregon League of Conservation Voters|Portland Association of Teachers,,Yes,No,No,No,Yes
+State House District 43 Democratic Primary,Roberta Phillip-Robbins,http://www.robertafororegon.com/,https://www.facebook.com/robertafororegon/?fref=ts,,images/candidates/roberta.png,State Representative Lew Frederick|Multnomah County Chair Deborah Kafoury|Mother PAC,The Oregonian,,,,,
+State House District 43 Democratic Primary,Tawna Sanchez,http://www.tawnasanchez.com/,https://www.facebook.com/tawna4oregonhd43/,https://twitter.com/tawna4oregon,images/candidates/tawna.png,"Sam Adams, Former Mayor of Portland|Oregon Building Trades Council|Representative Joe Gallegos",,,,,,
+Secretary of State Democratic Primary,Brad Avakian,http://www.bradavakian.com/,https://www.facebook.com/BradAvakianOregon,https://twitter.com/bradavakian,images/candidates/brad.jpeg,Oregon League of Conservation Voters|Oregon Chapter of the Sierra Club|NARAL Pro-Choice Oregon PAC,,,,,,
+Secretary of State Democratic Primary,Richard Devlin,http://devlinfororegon.com/,https://www.facebook.com/sendevlin,,images/candidates/devlin.png,Planned Parenthood PAC|Oregon Nurses Association|Oregon Building Trades Council,The Oregonian,,,,,
+Secretary of State Democratic Primary,Val Hoyle,http://www.valhoyle.com/,https://www.facebook.com/Val-Hoyle-402748740707/,https://twitter.com/ValHoyle,images/candidates/val.png, Planned Parenthood PAC|Basic Rights Oregon Equality PAC|the Oregon Building Trades Council,,,,,,
+Secretary of State Republican Primary,Sid Leiken,http://www.sidleiken.com/,https://www.facebook.com/SidLeikenForOregon/,,images/candidates/sid.png,,,,,,,
+Secretary of State Republican Primary,Dennis Richardson,http://dennisrichardson.com/,https://www.facebook.com/DennisRichardsonforOregon,https://twitter.com/DRichardsonOR,images/candidates/dennis.png,,The Oregonian,,,,,
+"Portland City Council, Position 1",Amanda Fritz,http://amanda2016.com/,https://www.facebook.com/AmandaForPortland/,https://twitter.com/AmandaFritzRN,images/candidates/fritz.png,,Portland Mercury|The Oregonian|The Portland Tribune,,,,,
+"Portland City Council, Position 1",Lanita Duke,,https://www.facebook.com/dukeforcitycouncil/,,images/candidates/lanita.png,,,,,,,
+"Portland City Council, Position 4",Chloe Eudaly,,https://www.facebook.com/chloe4pdx/,,images/candidates/chloe.png,,Portland Mercury,,,,,
+"Portland City Council, Position 4",Stuart Emmons,http://www.stuartemmons.com/,https://www.facebook.com/stuartemmonsforportland/,https://twitter.com/Stuart_Emmons,images/candidates/stuart.jpg,,The Oregonian,,,,,
+"Portland City Council, Position 4",Steve Novick,http://www.novickforportland.org/,https://www.facebook.com/steve.novick.OR/?fref=ts,https://twitter.com/NovickOR,images/candidates/steve.png,,,,,,,
+Multnomah County Commissioner District 1,Sharon Meieran,http://www.votesharon.com/,https://www.facebook.com/SharonMeieran/,,images/candidates/sharon.png,,Portland Mercury,,,,,
+Multnomah County Commissioner District 1,Brian Wilson,http://www.wilsonforportland.com/,https://www.facebook.com/BW4MC/,https://twitter.com/bw4mc,images/candidates/brian.jpeg,,,,,,,
+Multnomah County Commissioner District 1,Marisha Childs,http://vote-marisha-childs.ruck.us/,,,images/candidates/marisa.jpg,,,,,,,
+Multnomah County Commissioner District 1,Eric Zimmerman,http://www.ericzimmerman.org/,https://www.facebook.com/ericformultco/,https://twitter.com/EZ_PDX?ref_src=twsrc%5Etfw,images/candidates/eric.png,,The Oregonian,,,,,
+Multnomah County Commissioner District 1,Mel Rader,http://www.melrader.com/,https://www.facebook.com/mel4mult,https://twitter.com/mel4mult,images/candidates/mel.png,,,,,,,
+Multnomah County Commissioner District 1,Wes Soderback,,,,images/candidates/wes.jpg,,,,,,,
+Multnomah County Commissioner District 1,Ken Stokes,,,,,,,,,,,
+Multnomah County Commissioner District 4,Amanda Schroeder,http://www.amandaforeastcounty.com/about,https://www.facebook.com/Amanda-Schroeder-484098168437465/,,images/candidates/amanda.png,,,,,,,
+Multnomah County Commissioner District 4,Lori Stegmann,http://voteloristegmann.com/,https://www.facebook.com/LoriStegmannLeadership/,,images/candidates/lori.png,,Portland Mercury|The Oregonian,,,,,
+Multnomah County Commissioner District 4,Stanley Dirks,,,,,,,,,,,

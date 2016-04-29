@@ -132,8 +132,8 @@ body {
 }
 .candidate {
     @include gridle_grid(4);
-    min-height: 200px;
-    &.endorsements { min-height: 440px; }
+    min-height: 240px;
+    &.long { min-height: 480px; }
     margin-bottom: 30px;
     @include gridle_state(tablet) {
         min-height: 200px;
@@ -167,7 +167,8 @@ body {
         @include gridle_grid(7);
         @include gridle_push(3);
         padding-top: 20px;
-        font-size: 80%;
+        font-size: .8em;
+        ul + ul { margin-top: 10px }
     }
     .bio {
         padding-left: 0;

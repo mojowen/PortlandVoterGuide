@@ -1673,10 +1673,10 @@ body {
 
 .candidate {
   width: 33.33333%;
-  min-height: 200px;
+  min-height: 240px;
   margin-bottom: 30px; }
-  .candidate.endorsements {
-    min-height: 440px; }
+  .candidate.long {
+    min-height: 480px; }
   @media screen and (max-width: 720px) {
     .candidate {
       min-height: 200px;
@@ -1697,7 +1697,7 @@ body {
     width: 58.33333%;
     left: 25%;
     padding-top: 20px;
-    font-size: 80%; }
+    font-size: .8em; }
     @media screen and (max-width: 480px) {
       .candidate .endorsements, .candidate .bio {
         width: 100%;
@@ -1706,6 +1706,8 @@ body {
       .candidate .endorsements, .candidate .bio {
         width: 83.33333%;
         left: 8.33333%; } }
+    .candidate .endorsements ul + ul, .candidate .bio ul + ul {
+      margin-top: 10px; }
   .candidate .bio {
     padding-left: 0;
     padding-right: 0;
