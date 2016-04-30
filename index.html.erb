@@ -119,7 +119,7 @@
     <div class="section">
       <div class="inner">
         <h2><%= contest %></h2>
-        <p><%= desc %>
+        <p><%= desc %></p>
         <% @candidates[contest].each do |candidate| %>
           <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %> <%= 'long' if ['State House District 43 Democratic Primary', 'Secretary of State Democratic Primary'].index(contest) %>">
           <h2><%= candidate['name'] %></h2>
