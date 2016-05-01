@@ -142,7 +142,7 @@ body {
 }
 .candidate {
     @include gridle_grid(4);
-    min-height: 300px;
+    min-height: 310px;
     .wrap {
         position: relative;
         padding-bottom: 20px;
