@@ -100,7 +100,7 @@ body {
         overflow-y: auto;
         margin: 20px 0 50px;
         table {
-            th .img {
+            .img {
                 @include frame(40px);
                 margin: 0 auto;
                 display: block;
@@ -113,6 +113,16 @@ body {
                 padding-left: 10px;
                 padding-right: 0;
                 min-width: 200px;
+            }
+            .mobile { display: none; }
+            @include gridle_state(mobile) {
+                .mobile { display: block; } 
+                .mobile_hide { display: none; }
+            }
+            .mobile_block {
+                padding-top: 10px;
+                @include gridle_grid(4);
+                text-align: center;
             }
             td {
                 line-height: 1.4em;
@@ -133,7 +143,15 @@ body {
 .candidate {
     @include gridle_grid(4);
     min-height: 300px;
+    .wrap {
+        position: relative;
+        padding-bottom: 20px;
+        @include clear;
+    }
     &.long { min-height: 480px; }
+    @include gridle_state(tablet) { 
+        &, &.long { min-height: auto; }
+    }
     margin-bottom: 30px;
     @include gridle_state(tablet) {
         min-height: 200px;

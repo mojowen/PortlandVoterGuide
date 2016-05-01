@@ -66,7 +66,7 @@
           <tr>
             <th></th>
             <% @candidates["Portland Mayor"].each do |candidate| %>
-              <th>
+              <th class="mobile_hide">
                 <div class="img" style="background-image: url(<%= candidate["photo"] %>);" ></div>
               </th>
             <% end %>
@@ -75,9 +75,19 @@
         <tbody>
           <% @questions.each do |question| %>
             <tr>
-              <td class="question"><%= question %></td>
+              <td class="question">
+                <%= question %>
+                <div class="mobile">
+                  <% @candidates["Portland Mayor"].each do |candidate| %>
+                    <div class="mobile_block">
+                      <div class="img" style="background-image: url(<%= candidate["photo"] %>);" ></div>
+                      <span><%= candidate[question.downcase] %></span>
+                    </div>
+                  <% end %>
+                </div>
+              </td>
                 <% @candidates["Portland Mayor"].each do |candidate| %>
-                  <td><%= candidate[question.downcase] %></td>
+                  <td class="mobile_hide"><%= candidate[question.downcase] %></td>
                 <% end %>
             </tr>
           <% end %>
@@ -122,43 +132,45 @@
         <p><%= desc %></p>
         <% @candidates[contest].each do |candidate| %>
           <div class="candidate <%= "row-#{[nil,1,2][@candidates[contest].length]}" if @candidates[contest].length < 3 %> <%= 'long' if ['State House District 43 Democratic Primary', 'Secretary of State Democratic Primary'].index(contest) %>">
-          <h2><%= candidate['name'] %></h2>
-          <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
-          <div class="social">
-            <% if candidate['website'] %>
-              <a target="_blank" href="<%= candidate['website'] %>">
-                <i  class="fa fa-link"></i>
-                Website
-              </a>
-            <% end %>
-            <% if candidate['facebook'] %>
-              <a target="_blank" href="<%= candidate['facebook'] %>">
-              <i class="fa fa-facebook-square"></i>
-              Facebook
-              </a>
-            <% end %>
-          </div>
-          <% if candidate['endorsements'] %>
-            <div class="endorsements">
-              <h4>Endorsed By:</h4>
-              <ul >
-                <% candidate["endorsements"].split('|').each do |endorsement| %>
-                  <li><%= endorsement %></li>
+            <div class="wrap">
+              <h2><%= candidate['name'] %></h2>
+              <div class="img" style="background-image: url('<%= candidate["photo"] || 'images/unknown.jpg' %>');" ></div>
+              <div class="social">
+                <% if candidate['website'] %>
+                  <a target="_blank" href="<%= candidate['website'] %>">
+                    <i  class="fa fa-link"></i>
+                    Website
+                  </a>
                 <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <% if candidate['media'] %>
-            <div class="endorsements">
-              <h4>Newspapers:</h4>
-              <ul >
-                <% candidate["media"].split('|').each do |endorsement| %>
-                  <li><%= endorsement %></li>
+                <% if candidate['facebook'] %>
+                  <a target="_blank" href="<%= candidate['facebook'] %>">
+                  <i class="fa fa-facebook-square"></i>
+                  Facebook
+                  </a>
                 <% end %>
-              </ul>
+              </div>
+              <% if candidate['endorsements'] %>
+                <div class="endorsements">
+                  <h4>Endorsed By:</h4>
+                  <ul >
+                    <% candidate["endorsements"].split('|').each do |endorsement| %>
+                      <li><%= endorsement %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <% if candidate['media'] %>
+                <div class="endorsements">
+                  <h4>Newspapers:</h4>
+                  <ul >
+                    <% candidate["media"].split('|').each do |endorsement| %>
+                      <li><%= endorsement %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/candidates/<%= make_uri candidate['office'] %>-<%= make_uri candidate['name'] %>.html" data-office="<%= candidate['office'] %>" onclick="endorsementWidget(this)">endorse</a>
             </div>
-          <% end %>
-          <a class="vote_for" data-name="<%= candidate["name"] %>" data-link="/sharing/candidates/<%= make_uri candidate['office'] %>-<%= make_uri candidate['name'] %>.html" data-office="<%= candidate['office'] %>" onclick="endorsementWidget(this)">endorse</a>
           </div>
         <% end %>
       </div>

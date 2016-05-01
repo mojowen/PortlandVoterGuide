@@ -135,7 +135,7 @@ strong {
 .row, .row-reverse {
   zoom: 1; }
 
-.gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .container .header, .container .section, .container .section .inner, .about, .issues, .candidate, .candidate .social, .candidate .endorsements, .candidate .bio, .counselor, .measure, .measure .choice, .measure .thumb, .measure .explanation, .measure .endorsements {
+.gr-0, .gr-1, .gr-2, .gr-3, .gr-4, .gr-5, .gr-6, .gr-7, .gr-8, .gr-9, .gr-10, .gr-11, .gr-12, .container .header, .container .section, .container .section .inner, .about, .issues, .issues .scroll table .mobile_block, .candidate, .candidate .social, .candidate .endorsements, .candidate .bio, .counselor, .measure, .measure .choice, .measure .thumb, .measure .explanation, .measure .endorsements {
   display: inline-block;
   min-height: 1px;
   float: left;
@@ -1640,7 +1640,7 @@ body {
   .issues .scroll {
     overflow-y: auto;
     margin: 20px 0 50px; }
-    .issues .scroll table th .img {
+    .issues .scroll table .img {
       width: 40px;
       height: 40px;
       border-radius: 100%;
@@ -1658,6 +1658,17 @@ body {
       padding-left: 10px;
       padding-right: 0;
       min-width: 200px; }
+    .issues .scroll table .mobile {
+      display: none; }
+    @media screen and (max-width: 480px) {
+      .issues .scroll table .mobile {
+        display: block; }
+      .issues .scroll table .mobile_hide {
+        display: none; } }
+    .issues .scroll table .mobile_block {
+      padding-top: 10px;
+      width: 33.33333%;
+      text-align: center; }
     .issues .scroll table td {
       line-height: 1.4em;
       padding: 20px;
@@ -1675,8 +1686,18 @@ body {
   width: 33.33333%;
   min-height: 300px;
   margin-bottom: 30px; }
+  .candidate .wrap {
+    position: relative;
+    padding-bottom: 20px; }
+    .candidate .wrap:after, .candidate .wrap:before {
+      content: "";
+      clear: both;
+      display: block; }
   .candidate.long {
     min-height: 480px; }
+  @media screen and (max-width: 720px) {
+    .candidate, .candidate.long {
+      min-height: auto; } }
   @media screen and (max-width: 720px) {
     .candidate {
       min-height: 200px;
